@@ -1,4 +1,3 @@
-import numpy as np
 import cv2
 
 def RGB2HSV(r, g, b):
@@ -25,7 +24,7 @@ def RGB2HSV(r, g, b):
     v = cmx
     return h, s, v
 
-def convert_image(image_path):
+def convert_img(image_path):
     image = cv2.imread(image_path)
     row, col, ch = image.shape
     for x in range(col):
@@ -35,7 +34,7 @@ def convert_image(image_path):
             image[y, x] = (int(h/2), int(s*255), int(v*255))
     return image
 
-def avg_int(image):
+def thresh(image):
     total = 0
     counter = 0
     row, col = image.shape
@@ -47,7 +46,7 @@ def avg_int(image):
     return avg
 
 def change_px(image):
-    avg = avg_int(image)
+    avg = thresh(image)
     row, col = image.shape
     for x in range(col):
         for y in range(row):
@@ -57,21 +56,25 @@ def change_px(image):
                 image[x,y] = 255
     return image
 
-img = convert_image("lenna.png")
-cv2.imshow("test1", img)
+img = convert_img("lenna.png")
+cv2.imshow("hsv", img)
 
 h,s,v = cv2.split(img)
 
-print(avg_int(h))
-print(avg_int(s))
-print(avg_int(v))
+print(thresh(h))
+print(thresh(s))
+print(thresh(v))
 
-test_h = change_px(h)
-test_s = change_px(s)
-test_v = change_px(v)
+img_h = change_px(h)
+img_s = change_px(s)
+img_v = change_px(v)
 
-cv2.imshow("h", test_h)
-cv2.imshow("s", test_s)
-cv2.imshow("v", test_v)
+cv2.imshow("h", img_h)
+cv2.imshow("s", img_s)
+cv2.imshow("v", img_v)
+
+cv2.imwrite("h.png", img_h)
+cv2.imwrite("s.png", img_s)
+cv2.imwrite("v.png", img_v)
 
 cv2.waitKey(0)
