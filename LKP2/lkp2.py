@@ -1,12 +1,15 @@
 import cv2
 
 def RGB2HSV(r, g, b):
+    # Membuat nilai RGB agar masuk dalam range o - 1
     r, g, b = r/255.0, g/255.0, b/255.0
 
+    # Cari nilai max, min, dan selisih kedua nilai
     cmx = max(r, g, b)
     cmn = min(r, g, b)
     diff = cmx-cmn
 
+    # Perhitungan Nilai "Hue"
     if cmx == cmn:
         h = 0
     elif cmx == r:
@@ -16,17 +19,24 @@ def RGB2HSV(r, g, b):
     elif cmx == b:
         h = (60 * ((r-g)/diff) + 240) % 360
 
+    # Perhitungan Nilai "Saturation"
     if cmx == 0:
         s = 0
     else:
         s = diff/cmx
         
+    # Perhitungan Nilai "Value"
     v = cmx
     return h, s, v
 
 def convert_img(image_path):
+    # Membaca image
     image = cv2.imread(image_path)
+
+    # Mendapatkan jumlah baris, kolom, dan channel
     row, col, ch = image.shape
+
+    # Perulangan "for" untuk mengubah gambar menjadi format HSV
     for x in range(col):
         for y in range(row):
             b, g, r = image[y, x]
@@ -38,6 +48,8 @@ def thresh(image):
     total = 0
     counter = 0
     row, col = image.shape
+
+    # Perhitugan untuk mendapatkan rata-rata / threshold dari suatu channel
     for x in range(col):
         for y in range(row):
             total += image[x,y]
@@ -48,6 +60,8 @@ def thresh(image):
 def change_px(image):
     avg = thresh(image)
     row, col = image.shape
+
+    # Perhitungan untuk mengganti nilai suatu pixel agar memenuhi ketentuan
     for x in range(col):
         for y in range(row):
             if image[x,y] < avg:
