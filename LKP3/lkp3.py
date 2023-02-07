@@ -1,6 +1,7 @@
 import numpy as np
 import cv2
 import matplotlib.pyplot as plt
+import PyQt5
 
 def convert_gray(image):
     row, col, ch = image.shape
@@ -27,8 +28,8 @@ def contrastStretch(image):
     return ctrStretch
 
 def histogram(image):
-    plt.hist(image.ravel(), 256, [0, 256])
-    plt.show
+    plt.hist(image.ravel(), 256, [0,256])
+    plt.show()
 
 def equ(image):
     # masih pake fungsi dl
@@ -57,7 +58,7 @@ equ_stretch = equ(stretch)
 # cv2.imshow("gray", gray_melon) 
 # cv2.imshow("stretch", stretch) 
 
-cv2.imshow("equ_stretch", equ_stretch) 
+# cv2.imshow("equ_stretch", equ_stretch) 
 histogram(equ_stretch)
 
 
