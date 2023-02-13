@@ -67,16 +67,33 @@ def cmltv_histogram(image):
 
 # Masih salah
 def equal_hist(image):
-    flat_image = image.flatten()
-    histogram, bins = np.histogram(flat_image, bins=256, range=(0, 255))
-
-    cumulative_histogram = np.cumsum(histogram)
-    cumulative_histogram = cumulative_histogram / cumulative_histogram[-1]
+    # Convert the image to grayscale
+    grayscale_image = np.mean(image, axis=2).astype(np.uint8)
     
-    equalized = np.interp(flat_image, bins[:-1], cumulative_histogram)
-    eqlz = equalized.reshape(image.shape)
-
-    plt.hist(eqlz.flatten(), bins=256, range=(0, 255))
+    # Calculate the histogram of the grayscale image
+    histogram = np.zeros(256, dtype=np.int)
+    for i in range(grayscale_image.shape[0]):
+        for j in range(grayscale_image.shape[1]):
+            histogram[grayscale_image[i, j]] += 1
+    
+    # Calculate the cumulative distribution function (CDF) of the histogram
+    cdf = np.zeros(256, dtype=np.int)
+    cdf[0] = histogram[0]
+    for i in range(1, 256):
+        cdf[i] = cdf[i - 1] + histogram[i]
+    
+    # Normalize the CDF
+    cdf_min = np.min(cdf)
+    cdf_max = np.max(cdf)
+    cdf_normalized = (cdf - cdf_min) / (cdf_max - cdf_min) * 255
+    
+    # Map the intensity values of the grayscale image to the normalized CDF
+    equalized_image = np.zeros(grayscale_image.shape, dtype=np.uint8)
+    for i in range(grayscale_image.shape[0]):
+        for j in range(grayscale_image.shape[1]):
+            equalized_image[i, j] = cdf_normalized[grayscale_image[i, j]].astype(np.uint8)
+    
+    plt.hist(cdf.flatten(), bins=256, range=(0, 255))
     plt.xlim([0, 256])
     plt.xlabel("Pixel Intensity")
     plt.ylabel("Frequency")
@@ -118,8 +135,9 @@ equ_stretch = equ(stretch)
 
 # histogram(gray_melon) 
 # norm_hist(gray_melon) 
-# cmltv_histogram2(stretch)
-equal_hist(gray_melon)
+
+cmltv_histogram2(stretch)
+equal_hist(melon)
 
 
 
