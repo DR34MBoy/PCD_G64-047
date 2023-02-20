@@ -1,4 +1,4 @@
-# Imoort library yang akan digunakan
+# Import library yang akan digunakan
 import numpy as np
 import cv2
 
@@ -48,11 +48,11 @@ def convert_gray(image):
     # Mengembalikan hasil konversi grayscale
     return gray
 
-
+# Main Driver #
 # Membaca gambar
 img = cv2.imread("lenna.png")
 
-# Membuat filter kernel
+# Membuat filter mask kernel
 lowPassFilter = np.array([[1/9, 1/9, 1/9],
                           [1/9, 1/9, 1/9],
                           [1/9, 1/9, 1/9]])
