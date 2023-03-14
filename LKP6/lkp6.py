@@ -69,7 +69,7 @@ ax3[1,2].hist(B.ravel(), 256, [10,256])
 # plt.show() 
 
 # Dari gambar visualisasi yang didapat, akan digunakan gambar dengan format
-# LAB (Lebih spesifik yaitu bagian A* nya saja) karena bagian yang ingin di 
+# LAB (Lebih spesifik yaitu bagian A* nya saja) karena bagian yang ingin di
 # mask terlihat lebih jelas untuk dibedakan dengan backgroundnya
 
 # Menentukan nilai thresholding
@@ -116,7 +116,7 @@ closing(mask_img2, 5)
 closing(mask_img2, 7)   
 closing(mask_img2, 9) 
 
-# Dari hasil yang didapat, menurut saya hasil yang paling bagus adalah gambar dengan kernel erosi 3x3 dan kernel dilasi 5x5
+# Dari hasil yang didapat, menurut saya hasil yang paling bagus adalah gambar dengan kernel dilasi 3x3 dan kernel erosi 5x5
 kernel_dilasi = np.ones((3, 3), np.uint8)
 kernel_erosi = np.ones((5, 5), np.uint8)
 dilasi = cv2.dilate(mask_img2, kernel_dilasi, iterations=1)
