@@ -5,9 +5,9 @@ import cv2
 
 ## Aktifkan salah satu
 
-img = cv2.imread('culvularia-patogen.png', cv2.IMREAD_GRAYSCALE)
+# img = cv2.imread('culvularia-patogen.png', cv2.IMREAD_GRAYSCALE)
 ## atau
-# img = cv2.imread('fusarium-patogen.png', cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('fusarium-patogen.png', cv2.IMREAD_GRAYSCALE)
 
 img_data = (img.astype(float)).ravel()
 normalized_data = (img_data-np.min(img_data))/(np.max(img_data)-np.min(img_data))
