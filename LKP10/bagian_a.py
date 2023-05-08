@@ -7,6 +7,7 @@ from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.pyplot as plt
 
 dataset = "D:\Fakhri\Kuliah\Ilkom\Kuliah\Semester 6\PCD\PCD_G64-047\LKP10\AnnualGlobalTemps1856-2005.txt"
+dataset = "[PATH_DATASET]"
 df_nino = pd.read_table(dataset)
 N = df_nino.shape[0]
 t0 = 1856
@@ -116,19 +117,3 @@ xlabel = 'Time'
 fig, ax = plt.subplots(figsize=(9, 5))
 plot_wavelet(ax, time, signal, scales, xlabel=xlabel, ylabel=ylabel, title=title)
 plt.show()
-
-## Plot All
-
-# fig = plt.figure(figsize=(10,6))
-# spec = gridspec.GridSpec(ncols=6, nrows=6)
-# top_ax = fig.add_subplot(spec[0, 0:5])
-# bottom_left_ax = fig.add_subplot(spec[1:, 0:5])
-# bottom_right_ax = fig.add_subplot(spec[1:, 5])
-
-# plot_signal_plus_average(top_ax, time, signal, average_over = 3)
-# yticks, ylim = plot_wavelet(bottom_left_ax, time, signal, scales, xlabel=xlabel, ylabel=ylabel, title=title)
-
-# plot_fft_plus_power(bottom_right_ax, time, signal, plot_direction='vertical', yticks=yticks, ylim=ylim)
-# bottom_right_ax.set_ylabel('Period [years]', fontsize=7)
-# plt.tight_layout()
-# plt.show()
