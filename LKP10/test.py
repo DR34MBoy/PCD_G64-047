@@ -9,8 +9,6 @@ x = (img.astype(float)).ravel()
 
 normalizedData = (x-np.min(x))/(np.max(x)-np.min(x))
 
-normalizedData = normalizedData[:1000]
-
 
 
 

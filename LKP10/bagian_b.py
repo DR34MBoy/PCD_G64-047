@@ -12,7 +12,7 @@ img = cv2.imread('culvularia-patogen.png', cv2.IMREAD_GRAYSCALE)
 img_data = (img.astype(float)).ravel()
 normalized_data = (img_data-np.min(img_data))/(np.max(img_data)-np.min(img_data))
 
-chirp_signal = np.sin(250 * np.pi * normalized_data**2)
+chirp_signal = np.sin(np.pi * normalized_data**2)
 
 fig, ax = plt.subplots(figsize=(6,1))
 ax.set_title("Original Chirp Signal: ")
