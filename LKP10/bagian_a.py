@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from mpl_toolkits.axes_grid1 import make_axes_locatable
 import matplotlib.pyplot as plt
 
-dataset = "D:\Fakhri\Kuliah\Ilkom\Kuliah\Semester 6\PCD\PCD_G64-047\LKP10\AnnualGlobalTemps1856-2005.txt"
+# dataset = "D:\Fakhri\Kuliah\Ilkom\Kuliah\Semester 6\PCD\PCD_G64-047\LKP10\AnnualGlobalTemps1856-2005.txt"
 dataset = "[PATH_DATASET]"
 df_nino = pd.read_table(dataset)
 N = df_nino.shape[0]
