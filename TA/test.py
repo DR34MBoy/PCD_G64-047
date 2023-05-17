@@ -41,7 +41,7 @@ print(rmodel.score(xtest,ytest))
 
 
 #### TESTING ####
-img_path=r"D:\Fakhri\Kuliah\Jadwal dan Materi Kuliah\Tahun Ketiga\Semester 6\PCD\TA\rename_images\Uninfected_(13506).png"
+img_path=r"images/Uninfected_(10).png"
 img=cv2.imread(img_path)  
 
 plt.imshow(img)  
